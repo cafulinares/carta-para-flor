@@ -1,184 +1,206 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Para Heidy Flor de María</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mi linda flor de Marzo</title>
   <style>
-    /* Fondo vino + negro con animación suave, textura elegante */
-    body {
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg1:#4c0b15;
+      --bg2:#1a0000;
+      --accent:#f6d0d6;
+      --text:#f7ecec;
+      --muted:rgba(247,236,236,0.7);
+      --max-width:900px;
+    }
+
+    /* Reset y base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
       font-family: "Georgia", serif;
-      background: radial-gradient(circle at top left, #4c0018 0%, #1a0008 35%, #050006 100%);
-      background-size: 200% 200%;
-      animation: fondoHipnotico 22s ease-in-out infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      color:var(--text);
+      background:linear-gradient(120deg,var(--bg1),var(--bg2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-y:auto;
     }
 
-    @keyframes fondoHipnotico {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
+    /* Contenedor principal */
+    .card{
+      width:100%;
+      max-width:var(--max-width);
+      background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.35));
+      border-radius:18px;
+      padding:36px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.6);
+      position:relative;
+      overflow:hidden;
+      transform:translateY(12px);
+      opacity:0;
+      animation:fadeUp 700ms ease-out 200ms forwards;
     }
 
-    .carta {
-      background: rgba(10, 0, 6, 0.82);
-      padding: 40px 35px;
-      max-width: 650px;
-      border-radius: 16px;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.8);
-      border: 1px solid rgba(180, 20, 80, 0.55);
-      backdrop-filter: blur(12px);
-      position: relative;
-      overflow: hidden;
-      animation: aparecerCarta 1.8s ease forwards;
-      opacity: 0;
-      transform: translateY(25px);
+    /* Fondo texturizado sutil animado */
+    .bg-anim{
+      position:absolute;
+      inset: -30% -30%;
+      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02), transparent 10%),
+                  radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01), transparent 10%);
+      filter:blur(30px);
+      animation:slowRotate 18s linear infinite;
+      transform-origin:center;
+      pointer-events:none;
     }
 
-    @keyframes aparecerCarta {
-      0%   { opacity: 0; transform: translateY(25px); }
-      60%  { opacity: 1; transform: translateY(0); }
-      100% { opacity: 1; transform: translateY(0); }
+    @keyframes slowRotate{
+      from{transform:rotate(0deg) scale(1)}
+      to{transform:rotate(360deg) scale(1)}
     }
 
-    /* Brillo sutil alrededor, como aura roja */
-    .carta::before {
-      content: "";
-      position: absolute;
-      inset: -40px;
-      background: radial-gradient(circle, rgba(200,40,90,0.12), transparent 60%);
-      opacity: 0.7;
-      z-index: -1;
+    @keyframes fadeUp{
+      to{transform:none; opacity:1}
     }
 
-    h1 {
-      font-size: 28px;
-      text-align: center;
-      color: #ffe6f0;
-      margin-bottom: 12px;
-      letter-spacing: 1.2px;
+    header{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      margin-bottom:18px;
     }
 
-    .nombre {
-      text-align: center;
-      font-size: 18px;
-      color: #ffc2d4;
-      margin-bottom: 28px;
-      font-weight: bold;
+    .avatar{
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),rgba(255,255,255,0.12));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#2b0b0f;
+      font-weight:700;
+      font-size:20px;
+      flex-shrink:0;
+      box-shadow:0 6px 18px rgba(0,0,0,0.5);
     }
 
-    p {
-      font-size: 17px;
-      line-height: 1.9;
-      color: #f2d7dd;
-      margin: 14px 0;
-      text-align: justify;
+    h1{
+      margin:0;
+      font-size:clamp(20px,4vw,34px);
+      letter-spacing:0.6px;
+      line-height:1.05;
+      color:var(--text);
+      overflow:hidden;
+      white-space:nowrap;
     }
 
-    .final {
-      margin-top: 28px;
-      font-size: 18px;
-      color: #ffe0ea;
-      font-weight: bold;
-      text-align: center;
+    /* Efecto de escritura */
+    .type{
+      display:inline-block;
+      border-right:2px solid var(--muted);
+      padding-right:6px;
+      animation:typing 2.6s steps(28,end), blink 900ms steps(1,end) infinite;
+      max-width:100%;
+    }
+    @keyframes typing{
+      from{width:0}
+      to{width:100%}
+    }
+    @keyframes blink{
+      50%{border-color:transparent}
     }
 
-    .firma {
-      margin-top: 32px;
-      text-align: right;
-      font-size: 16px;
-      color: #ffb3c6;
-      font-style: italic;
+    p.lead{
+      color:var(--muted);
+      margin:14px 0 22px;
+      font-size:clamp(14px,2.2vw,18px);
     }
+
+    .content{
+      font-size:clamp(16px,2.2vw,20px);
+      line-height:1.6;
+      color:var(--text);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding:20px;
+      border-radius:12px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.02);
+      transform-origin:center;
+      animation:float 6s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+      100%{transform:translateY(0)}
+    }
+
+    footer{
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .cta{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.08);
+      color:var(--muted);
+      padding:8px 12px;
+      border-radius:10px;
+      text-decoration:none;
+      transition:all 220ms ease;
+    }
+    .cta:hover{transform:translateY(-3px); color:var(--accent); border-color:rgba(246,208,214,0.18)}
+
+    /* Ajustes para móvil */
+    @media (max-width:600px){
+      body{padding:18px}
+      .card{padding:20px; border-radius:14px}
+      .avatar{width:52px;height:52px;font-size:18px}
+      header{gap:12px}
+      .type{animation-duration:2s}
+      .content{padding:16px; font-size:16px}
+      footer{flex-direction:column; align-items:flex-start; gap:8px}
+    }
+
+    /* Accesibilidad: contraste y foco */
+    a:focus, button:focus{outline:2px dashed rgba(246,208,214,0.25); outline-offset:4px}
   </style>
 </head>
 <body>
-  <div class="carta">
-    <h1>Cuando tu nombre despierta a la noche</h1>
-    <div class="nombre">Heidy Flor de María</div>
+  <div class="card" role="main" aria-labelledby="titulo">
+    <div class="bg-anim" aria-hidden="true"></div>
 
-    <p>
-      Hay noches en las que el silencio no pesa… seduce.  
-      Donde la oscuridad no asusta… invita.  
-      Y en ese espacio quieto, donde el mundo parece detenerse,  
-      es tu nombre, Flor, el que aparece primero, suave, inevitable,  
-      como si la noche misma lo susurrara para mí.
-    </p>
+    <header>
+      <div class="avatar" aria-hidden="true">F</div>
+      <div>
+        <h1 id="titulo"><span class="type">Mi linda flor de marzo</span></h1>
+        <p class="lead">Abre esto cuando tengas un momento para vos. Sin prisa.</p>
+      </div>
+    </header>
 
-    <p>
-      No sé si es tu voz, tu mirada, o esa calma tuya que desarma,  
-      pero hay algo en ti que atrae como un imán antiguo,  
-      algo que no se explica con lógica,  
-      algo que simplemente… me llama.
-    </p>
+    <article class="content" aria-label="Carta">
+      <p>Flor,</p>
+      <p>Hay cosas que no se dicen en un mensaje rápido. Por eso te escribí esto con calma: para que lo leas despacio, con la música que quieras y sin interrupciones.</p>
+      <p>Quería que supieras que pienso en vos de una manera que no siempre encuentro palabras. Esto no pide nada, solo comparte.</p>
+      <p>Con cariño,</p>
+      <p><strong>Robinho</strong></p>
+    </article>
 
-    <p>
-      Y cuanto más intento entenderlo, más claro lo siento:  
-      tú tienes esa luz que no deslumbra, pero envuelve;  
-      esa presencia que no grita, pero marca;  
-      esa energía que no se olvida, aunque uno cierre los ojos.
-    </p>
-
-    <p>
-      Hay personas que pasan por la vida como sombras,  
-      y otras que llegan como un susurro que se queda.  
-      Tú eres de esas presencias que no se buscan,  
-      pero cuando aparecen, uno entiende por qué nada antes encajaba.  
-      Porque eras tú la pieza que faltaba en un lugar  
-      que ni siquiera sabía que estaba vacío.
-    </p>
-
-    <p>
-      He aprendido a leerte en tus silencios,  
-      en la forma en que miras cuando no dices nada,  
-      en la manera en que tu risa rompe cualquier oscuridad.  
-      Y aunque no lo digas, aunque no lo nombres,  
-      hay algo en ti que responde a lo mío,  
-      como si nuestras energías se reconocieran antes que nosotros.
-    </p>
-
-    <p>
-      No quiero apresurarte, Flor.  
-      No quiero empujarte a nada.  
-      Pero tampoco quiero seguir guardando lo que siento  
-      como si fuera un secreto que no merece ver la luz.  
-      Lo que nace contigo no es un impulso,  
-      es una certeza que crece en silencio,  
-      como esas historias antiguas donde dos almas se encuentran  
-      sin haberlo planeado.
-    </p>
-
-    <p class="final">
-      Por eso hoy, sin máscaras y sin ruido,  
-      te abro este lugar que llevo guardado para ti:  
-      un espacio donde tú y yo caminemos de una forma distinta,  
-      más cercana, más nuestra, más verdadera.  
-      No necesito ponerle un nombre…  
-      sé que, si lees con el corazón, lo vas a entender.
-    </p>
-
-    <p>
-      Y si alguna parte de ti responde a estas palabras,  
-      aunque sea en silencio, aunque nadie más lo sepa,  
-      entonces no hace falta que digas nada grande:  
-      bastará con que un día, cuando me mires,  
-      tus ojos me digan que también elegiste quedarte.
-    </p>
-
-    <p>
-      Porque hay conexiones que no se explican,  
-      solo se viven.  
-      Y lo que siento contigo no busca explicación…  
-      busca camino.
-    </p>
-
-    <div class="firma">
-      — Robinho
-    </div>
+    <footer>
+      <span>Abre cuando quieras</span>
+      <a class="cta" href="https://cafulinares.github.io/carta-para-flor/" target="_blank" rel="noopener">Ver en nueva pestaña</a>
+    </footer>
   </div>
 </body>
 </html>
+
+
